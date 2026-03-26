@@ -1,0 +1,66 @@
+using System.Text.Json.Serialization;
+
+namespace Akira;
+
+/// <summary>
+/// Source-generated JSON serialization context for all Akira snapshot types.
+/// Enables AOT-compatible (de)serialization without runtime reflection.
+/// </summary>
+[JsonSourceGenerationOptions(
+    WriteIndented = true,
+    PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
+    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]
+[JsonSerializable(typeof(MachineSnapshot))]
+[JsonSerializable(typeof(BaseBoardSnapshot))]
+[JsonSerializable(typeof(BatterySnapshot))]
+[JsonSerializable(typeof(BIOSSnapshot))]
+[JsonSerializable(typeof(ComputerSystemProductSnapshot))]
+[JsonSerializable(typeof(ComputerSystemSnapshot))]
+[JsonSerializable(typeof(DesktopMonitorSnapshot))]
+[JsonSerializable(typeof(DiskDriveSnapshot))]
+[JsonSerializable(typeof(DiskPartitionSnapshot))]
+[JsonSerializable(typeof(EnvironmentSnapshot))]
+[JsonSerializable(typeof(FanSnapshot))]
+[JsonSerializable(typeof(LogicalDiskSnapshot))]
+[JsonSerializable(typeof(NetworkAdapterConfigurationSnapshot))]
+[JsonSerializable(typeof(NetworkAdapterSnapshot))]
+[JsonSerializable(typeof(OperatingSystemSnapshot))]
+[JsonSerializable(typeof(PhysicalMemorySnapshot))]
+[JsonSerializable(typeof(PrinterSnapshot))]
+[JsonSerializable(typeof(ProcessorSnapshot))]
+[JsonSerializable(typeof(ProcessSnapshot))]
+[JsonSerializable(typeof(ServiceSnapshot))]
+[JsonSerializable(typeof(SoundDeviceSnapshot))]
+[JsonSerializable(typeof(StartupCommandSnapshot))]
+[JsonSerializable(typeof(ThermalZoneTemperatureSnapshot))]
+[JsonSerializable(typeof(TimeZoneSnapshot))]
+[JsonSerializable(typeof(UserAccountSnapshot))]
+[JsonSerializable(typeof(VideoControllerSnapshot))]
+[JsonSerializable(typeof(VolumeSnapshot))]
+[JsonSerializable(typeof(SnapshotResult<BaseBoardSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<BIOSSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<ComputerSystemSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<ComputerSystemProductSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<OperatingSystemSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<TimeZoneSnapshot>))]
+[JsonSerializable(typeof(SnapshotResult<BatterySnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<DesktopMonitorSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<DiskDriveSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<DiskPartitionSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<EnvironmentSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<FanSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<LogicalDiskSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<NetworkAdapterSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<NetworkAdapterConfigurationSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<PhysicalMemorySnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<PrinterSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<ProcessorSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<ProcessSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<ServiceSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<SoundDeviceSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<StartupCommandSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<ThermalZoneTemperatureSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<UserAccountSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<VideoControllerSnapshot[]>))]
+[JsonSerializable(typeof(SnapshotResult<VolumeSnapshot[]>))]
+public partial class AkiraJsonContext : JsonSerializerContext;
