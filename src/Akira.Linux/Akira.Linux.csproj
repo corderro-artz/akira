@@ -10,20 +10,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Vaporsoft.Akira.Linux</PackageId>
-    <Version>0.3.0-alpha</Version>
-    <Authors>Corderro Artz</Authors>
-    <Description>Linux /proc and /sys based snapshot providers for the Akira system state library.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>akira;linux;proc;sys;system;snapshot;hardware;diagnostics</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <IsPackable>true</IsPackable>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <ProjectReference Include="..\Akira\Akira.csproj" />
   </ItemGroup>
 

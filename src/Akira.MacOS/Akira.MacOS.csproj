@@ -10,20 +10,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Vaporsoft.Akira.MacOS</PackageId>
-    <Version>0.3.0-alpha</Version>
-    <Authors>Corderro Artz</Authors>
-    <Description>macOS sysctl and IOKit based snapshot providers for the Akira system state library.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>akira;macos;sysctl;iokit;system;snapshot;hardware;diagnostics</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <IsPackable>true</IsPackable>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <ProjectReference Include="..\Akira\Akira.csproj" />
   </ItemGroup>
 
