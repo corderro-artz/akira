@@ -1,20 +1,9 @@
-<p align="center">
-  <h1 align="center">Akira</h1>
-  <p align="center">
-    A cross-platform .NET system state snapshot library.<br/>
-    Strongly-typed, immutable, AOT-ready.
-  </p>
-</p>
+# Akira
 
-<p align="center">
-  <a href="#installation">Installation</a> &bull;
-  <a href="#quick-start">Quick Start</a> &bull;
-  <a href="#snapshot-classes">Snapshot Classes</a> &bull;
-  <a href="#architecture">Architecture</a> &bull;
-  <a href="#api-reference">API Reference</a> &bull;
-  <a href="#contributing">Contributing</a> &bull;
-  <a href="#license">License</a>
-</p>
+**A cross-platform .NET system state snapshot library.**
+Strongly-typed, immutable, AOT-ready.
+
+[Installation](#installation) | [Quick Start](#quick-start) | [Snapshot Classes](#snapshot-classes) | [Architecture](#architecture) | [API Reference](#api-reference) | [Contributing](#contributing) | [License](#license)
 
 ---
 
@@ -293,4 +282,4 @@ Contributions are welcome. If you'd like to add Linux or macOS providers, open a
 
 ## License
 
-[MIT](LICENSE) — Copyright &copy; 2026 [Corderro Artz](https://github.com/corderro-artz) / [Vaporsoft](https://www.vaporsoft.dev)
+[MIT](LICENSE) — Copyright © 2026 [Corderro Artz](https://github.com/corderro-artz) / [Vaporsoft](https://www.vaporsoft.dev)
