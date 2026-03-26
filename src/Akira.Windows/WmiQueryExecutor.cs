@@ -1,6 +1,6 @@
 using System.Management;
 
-namespace Akira.Windows;
+namespace Vaporsoft.Akira.Windows;
 
 /// <summary>
 /// Default <see cref="IWmiQueryExecutor"/> implementation that calls real WMI.

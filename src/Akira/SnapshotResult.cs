@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Wraps the result of a snapshot collection attempt with metadata, timing, and error information.

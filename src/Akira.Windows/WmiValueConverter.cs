@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Management;
 
-namespace Akira.Windows;
+namespace Vaporsoft.Akira.Windows;
 
 /// <summary>
 /// Converts raw WMI property values to strongly-typed CLR values.

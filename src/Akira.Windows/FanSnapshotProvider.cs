@@ -1,6 +1,6 @@
-using Akira;
+using Vaporsoft.Akira;
 
-namespace Akira.Windows;
+namespace Vaporsoft.Akira.Windows;
 
 /// <summary>
 /// WMI provider for <see cref="FanSnapshot"/>. Queries Win32_Fan.

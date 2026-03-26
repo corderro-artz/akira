@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// A serializable master snapshot that wraps all individual snapshots together

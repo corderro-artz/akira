@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Snapshot of a processor. Maps to Win32_Processor.

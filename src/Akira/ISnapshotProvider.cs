@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Defines a provider that collects a typed system snapshot.

@@ -4,13 +4,13 @@
     <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Akira.Windows</RootNamespace>
+    <RootNamespace>Vaporsoft.Akira.Windows</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Akira.Windows</PackageId>
+    <PackageId>Vaporsoft.Akira.Windows</PackageId>
     <Version>0.1.2-alpha</Version>
     <Authors>Corderro Artz</Authors>
     <Description>Windows WMI-based snapshot providers for the Akira system state library.</Description>

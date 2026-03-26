@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Snapshot of a thermal zone temperature. Maps to MSAcpi_ThermalZoneTemperature.

@@ -42,21 +42,21 @@ Use it for fleet inventory, diagnostics dashboards, change detection, compliance
 
 ```bash
 # Core library (DTOs, interfaces, JSON serialization)
-dotnet add package Akira
+dotnet add package Vaporsoft.Akira
 
 # Windows providers (WMI-based)
-dotnet add package Akira.Windows
+dotnet add package Vaporsoft.Akira.Windows
 ```
 
-> **Akira.Linux** and **Akira.MacOS** provider packages are planned.
+> **Vaporsoft.Akira.Linux** and **Vaporsoft.Akira.MacOS** provider packages are planned.
 
 ---
 
 ## Quick Start
 
 ```csharp
-using Akira;
-using Akira.Windows;
+using Vaporsoft.Akira;
+using Vaporsoft.Akira.Windows;
 
 // Create a WMI executor (the default implementation talks to real WMI)
 var wmi = new WmiQueryExecutor();
@@ -159,9 +159,9 @@ akira/
       ▼
   ISnapshotProvider<T>.GetSnapshotAsync()
       │
-      ├──► Akira.Windows ──► WMI (System.Management)
-      ├──► Akira.Linux   ──► /proc, /sys, CLI tools  (planned)
-      └──► Akira.MacOS   ──► IOKit, sysctl, CLI tools (planned)
+      ├──► Vaporsoft.Akira.Windows ──► WMI (System.Management)
+      ├──► Vaporsoft.Akira.Linux   ──► /proc, /sys, CLI tools  (planned)
+      └──► Vaporsoft.Akira.MacOS   ──► IOKit, sysctl, CLI tools (planned)
       │
       ▼
   SnapshotResult<T>  →  MachineSnapshot  →  AkiraJsonContext
@@ -170,7 +170,7 @@ akira/
   26 strongly-typed DTOs, 1,000+ properties, zero reflection
 ```
 
-Each platform package ships providers that implement `ISnapshotProvider<T>` using native OS APIs. The core `Akira` package contains only the DTOs, the interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it has **zero dependencies**.
+Each platform package ships providers that implement `ISnapshotProvider<T>` using native OS APIs. The core `Vaporsoft.Akira` package contains only the DTOs, the interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it has **zero dependencies**.
 
 ### Provider Pattern
 
@@ -276,7 +276,7 @@ All 26 Windows providers use WMI via `System.Management`. Most query `root\CIMV2
 
 - **.NET 10.0** or later
 - **Windows** providers require `net10.0-windows` (WMI / `System.Management`)
-- No additional runtime dependencies for the core `Akira` package
+- No additional runtime dependencies for the core `Vaporsoft.Akira` package
 
 ---
 

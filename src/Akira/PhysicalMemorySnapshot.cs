@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Snapshot of a physical memory module. Maps to Win32_PhysicalMemory.

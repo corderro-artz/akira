@@ -1,6 +1,6 @@
-using Akira.Windows;
+using Vaporsoft.Akira.Windows;
 
-namespace Akira.Tests.Windows;
+namespace Vaporsoft.Akira.Tests.Windows;
 
 /// <summary>
 /// A fake <see cref="IWmiQueryExecutor"/> that returns pre-configured rows.

@@ -1,6 +1,6 @@
-using Akira;
+using Vaporsoft.Akira;
 
-namespace Akira.Tests;
+namespace Vaporsoft.Akira.Tests;
 
 public class MachineSnapshotTests
 {

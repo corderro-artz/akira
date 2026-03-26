@@ -4,13 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Akira.Linux</RootNamespace>
+    <RootNamespace>Vaporsoft.Akira.Linux</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Akira.Linux</PackageId>
+    <PackageId>Vaporsoft.Akira.Linux</PackageId>
     <Version>0.1.2-alpha</Version>
     <Authors>Corderro Artz</Authors>
     <Description>Linux /proc and /sys based snapshot providers for the Akira system state library.</Description>

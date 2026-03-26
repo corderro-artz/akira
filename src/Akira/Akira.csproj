@@ -4,13 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Akira</RootNamespace>
+    <RootNamespace>Vaporsoft.Akira</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Akira</PackageId>
+    <PackageId>Vaporsoft.Akira</PackageId>
     <Version>0.1.2-alpha</Version>
     <Authors>Corderro Artz</Authors>
     <Description>Cross-platform system state snapshot library for .NET. Core DTOs, interfaces, and JSON serialization context.</Description>

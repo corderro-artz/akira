@@ -1,7 +1,7 @@
 using System.Diagnostics;
-using Akira;
+using Vaporsoft.Akira;
 
-namespace Akira.Windows;
+namespace Vaporsoft.Akira.Windows;
 
 /// <summary>
 /// Base class for WMI providers that return a single snapshot instance

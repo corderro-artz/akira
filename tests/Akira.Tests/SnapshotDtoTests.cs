@@ -1,6 +1,6 @@
-using Akira;
+using Vaporsoft.Akira;
 
-namespace Akira.Tests;
+namespace Vaporsoft.Akira.Tests;
 
 /// <summary>
 /// Tests that all snapshot DTOs have working init-only properties.

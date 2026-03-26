@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Snapshot of the system baseboard (motherboard). Maps to Win32_BaseBoard.

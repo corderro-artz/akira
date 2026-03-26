@@ -1,6 +1,6 @@
 using System.Management;
 
-namespace Akira.Windows;
+namespace Vaporsoft.Akira.Windows;
 
 /// <summary>
 /// Executes WMI queries and returns raw <see cref="ManagementObject"/> results.

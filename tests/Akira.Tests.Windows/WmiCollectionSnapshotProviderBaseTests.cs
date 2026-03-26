@@ -1,7 +1,7 @@
-using Akira;
-using Akira.Windows;
+using Vaporsoft.Akira;
+using Vaporsoft.Akira.Windows;
 
-namespace Akira.Tests.Windows;
+namespace Vaporsoft.Akira.Tests.Windows;
 
 public class WmiCollectionSnapshotProviderBaseTests
 {

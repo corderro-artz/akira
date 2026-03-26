@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Source-generated JSON serialization context for all Akira snapshot types.

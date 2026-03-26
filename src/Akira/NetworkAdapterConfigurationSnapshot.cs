@@ -1,4 +1,4 @@
-namespace Akira;
+namespace Vaporsoft.Akira;
 
 /// <summary>
 /// Snapshot of a network adapter configuration. Maps to Win32_NetworkAdapterConfiguration.
