@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <PackageId>Vaporsoft.Akira.Windows</PackageId>
-    <Version>0.3.1-alpha</Version>
+    <Version>0.3.2-alpha</Version>
     <Authors>Corderro Artz</Authors>
     <Description>Windows WMI-based snapshot providers for the Akira system state library.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

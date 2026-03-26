@@ -104,7 +104,7 @@ var snapshot = new MachineSnapshot
 {
     MachineName    = Environment.MachineName,
     CollectedAtUtc = DateTimeOffset.UtcNow,
-    AkiraVersion   = "0.3.1",
+    AkiraVersion   = "0.3.2",
     Processors     = await new ProcessorSnapshotProvider(wmi).GetSnapshotAsync(),
     BIOS           = await new BIOSSnapshotProvider(wmi).GetSnapshotAsync(),
     DiskDrives     = await new DiskDriveSnapshotProvider(wmi).GetSnapshotAsync(),
