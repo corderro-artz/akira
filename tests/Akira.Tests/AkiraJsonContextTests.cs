@@ -32,7 +32,6 @@ public class AkiraJsonContextTests
         {
             MachineName = "RoundTrip",
             OsDescription = "Test OS",
-            TotalDurationMs = 99.9,
         };
 
         var json = JsonSerializer.Serialize(original, AkiraJsonContext.Default.MachineSnapshot);
@@ -41,7 +40,6 @@ public class AkiraJsonContextTests
         Assert.NotNull(deserialized);
         Assert.Equal("RoundTrip", deserialized!.MachineName);
         Assert.Equal("Test OS", deserialized.OsDescription);
-        Assert.Equal(99.9, deserialized.TotalDurationMs);
     }
 
     [Fact]

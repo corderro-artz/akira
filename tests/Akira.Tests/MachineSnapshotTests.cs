@@ -57,7 +57,6 @@ public class MachineSnapshotTests
             OsVersion = "10.0.26100",
             RuntimeDescription = ".NET 10.0.0",
             CollectedAtUtc = now,
-            TotalDurationMs = 123.45,
             AkiraVersion = "0.1.0",
             BIOS = SnapshotResult<BIOSSnapshot>.Ok(new BIOSSnapshot(), "WMI:Win32_BIOS", 1.0),
         };
@@ -69,7 +68,6 @@ public class MachineSnapshotTests
         Assert.Equal("10.0.26100", snapshot.OsVersion);
         Assert.Equal(".NET 10.0.0", snapshot.RuntimeDescription);
         Assert.Equal(now, snapshot.CollectedAtUtc);
-        Assert.Equal(123.45, snapshot.TotalDurationMs);
         Assert.Equal("0.1.0", snapshot.AkiraVersion);
         Assert.NotNull(snapshot.BIOS);
         Assert.True(snapshot.BIOS!.Success);

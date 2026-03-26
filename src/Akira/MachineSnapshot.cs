@@ -29,9 +29,6 @@ public sealed class MachineSnapshot
     /// <summary>UTC timestamp when the overall collection started.</summary>
     public DateTimeOffset CollectedAtUtc { get; init; }
 
-    /// <summary>Total wall-clock duration of the snapshot collection in milliseconds.</summary>
-    public double TotalDurationMs { get; init; }
-
     /// <summary>Version of the Akira library that produced this snapshot.</summary>
     public string? AkiraVersion { get; init; }
 
