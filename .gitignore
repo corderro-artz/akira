@@ -1,0 +1,35 @@
+## .NET / MSBuild
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+.vs/
+*.sln.docstates
+artifacts/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+project.lock.json
+project.fragment.lock.json
+
+## Test results
+TestResults/
+*.trx
+
+## IDE / Editor
+.idea/
+.vscode/
+*.swp
+*~
+
+## OS
+Thumbs.db
+.DS_Store
+
+## Sample app output
+sample-run.log
+samples/**/sample-output.json
+samples/**/output/

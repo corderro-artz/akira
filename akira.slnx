@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src\Akira\Akira.csproj" />
+  <Project Path="src\Akira.Windows\Akira.Windows.csproj" />
+  <Project Path="src\Akira.Linux\Akira.Linux.csproj" />
+  <Project Path="src\Akira.MacOS\Akira.MacOS.csproj" />
+  <Project Path="tests\Akira.Tests\Akira.Tests.csproj" />
+  <Project Path="tests\Akira.Tests.Windows\Akira.Tests.Windows.csproj" />
+</Solution>
