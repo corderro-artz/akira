@@ -151,22 +151,23 @@ akira/
 └── akira.slnx
 ```
 
-### How It Works
+### Data Flow
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Your Application                      │
-├─────────────────────────────────────────────────────────┤
-│    MachineSnapshot   ←   SnapshotResult<T>              │
-│    AkiraJsonContext       ISnapshotProvider<T>           │
-│                          ┌──────────────────┐           │
-│    Akira (core)          │   26 DTOs with   │           │
-│                          │   1,000+ props   │           │
-│                          └──────────────────┘           │
-├───────────┬──────────────┬──────────────────────────────┤
-│  Windows  │    Linux     │         macOS                │
-│   (WMI)   │ (proc/sys)  │   (IOKit/sysctl)             │
-└───────────┴──────────────┴──────────────────────────────┘
+  Application
+      │
+      ▼
+  ISnapshotProvider<T>.GetSnapshotAsync()
+      │
+      ├──► Akira.Windows ──► WMI (System.Management)
+      ├──► Akira.Linux   ──► /proc, /sys, CLI tools  (planned)
+      └──► Akira.MacOS   ──► IOKit, sysctl, CLI tools (planned)
+      │
+      ▼
+  SnapshotResult<T>  →  MachineSnapshot  →  AkiraJsonContext
+      │
+      ▼
+  26 strongly-typed DTOs, 1,000+ properties, zero reflection
 ```
 
 Each platform package ships providers that implement `ISnapshotProvider<T>` using native OS APIs. The core `Akira` package contains only the DTOs, the interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it has **zero dependencies**.
@@ -292,4 +293,4 @@ Contributions are welcome. If you'd like to add Linux or macOS providers, open a
 
 ## License
 
-[MIT](LICENSE) — Copyright &copy; 2026 Corderro Artz
+[MIT](LICENSE) — Copyright &copy; 2026 [Corderro Artz](https://github.com/corderro-artz) / [Vaporsoft](https://www.vaporsoft.dev)
