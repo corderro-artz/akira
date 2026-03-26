@@ -18,6 +18,8 @@
     <PackageTags>akira;linux;proc;sys;system;snapshot;hardware;diagnostics</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
