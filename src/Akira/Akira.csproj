@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <PackageId>Vaporsoft.Akira</PackageId>
-    <Version>0.3.2-alpha</Version>
+    <Version>0.3.3-alpha</Version>
     <Authors>Corderro Artz</Authors>
     <Description>Cross-platform system state snapshot library for .NET. Core DTOs, interfaces, and JSON serialization context.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

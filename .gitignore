@@ -29,6 +29,10 @@ TestResults/
 Thumbs.db
 .DS_Store
 
+## Temp / generated
+tmp-snapshot/
+machine-snapshot.json
+
 ## Sample app output
 sample-run.log
 samples/**/sample-output.json
