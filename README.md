@@ -97,21 +97,30 @@ string json = JsonSerializer.Serialize(
     AkiraJsonContext.Default.SnapshotResultProcessorSnapshotArray);
 ```
 
-#### Build a full MachineSnapshot
+#### Collect a complete MachineSnapshot
+
+```csharp
+var collector = new MachineSnapshotCollector(new WmiQueryExecutor());
+MachineSnapshot snapshot = await collector.CollectAsync();
+
+string json = JsonSerializer.Serialize(snapshot, AkiraJsonContext.Default.MachineSnapshot);
+```
+
+`CollectAsync` runs all 26 providers and populates every metadata field
+(machine name, OS, runtime, version) automatically.
+
+#### Build a selective MachineSnapshot
 
 ```csharp
 var snapshot = new MachineSnapshot
 {
     MachineName    = Environment.MachineName,
     CollectedAtUtc = DateTimeOffset.UtcNow,
-    AkiraVersion   = "0.3.2",
     Processors     = await new ProcessorSnapshotProvider(wmi).GetSnapshotAsync(),
     BIOS           = await new BIOSSnapshotProvider(wmi).GetSnapshotAsync(),
     DiskDrives     = await new DiskDriveSnapshotProvider(wmi).GetSnapshotAsync(),
     // ... add as many or as few providers as you need
 };
-
-string json = JsonSerializer.Serialize(snapshot, AkiraJsonContext.Default.MachineSnapshot);
 ```
 
 ---
@@ -282,7 +291,13 @@ SnapshotResult<T>.Unsupported(source)
 A sealed class that aggregates every `SnapshotResult<T>` into one serializable
 envelope with machine identification (`MachineName`, `DnsHostName`, `Domain`),
 OS info (`OsDescription`, `OsVersion`), and collection metadata
-(`CollectedAtUtc`, `TotalDurationMs`, `AkiraVersion`).
+(`CollectedAtUtc`, `AkiraVersion`).
+
+#### `MachineSnapshotCollector`
+
+A convenience class in `Vaporsoft.Akira.Windows` that collects all 26 snapshots
+and metadata in a single `CollectAsync()` call. Accepts an `IWmiQueryExecutor`
+and supports `CancellationToken`.
 
 #### `AkiraJsonContext`
 
