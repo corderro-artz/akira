@@ -1,4 +1,4 @@
-![Vaporsoft](icons/vaporsoft-logo.svg)  ![Akira](icons/akira-icon.svg)
+![Vaporsoft](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/vaporsoft-logo.svg)  ![Akira](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/akira-icon.svg)
 
 # Akira
 
