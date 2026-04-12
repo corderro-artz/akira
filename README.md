@@ -1,13 +1,22 @@
-![Vaporsoft](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/vaporsoft-logo.svg)  ![Akira](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/akira-icon.svg)
+﻿[![Vaporsoft](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/vaporsoft-logo.svg)](https://www.vaporsoft.dev)
+[![Akira](https://raw.githubusercontent.com/corderro-artz/akira/main/icons/akira-icon.svg)](https://github.com/corderro-artz/akira)
 
 # Akira
 
 **A cross-platform .NET system state snapshot library.**
-Strongly-typed, immutable, AOT-ready.
 
----
+Akira captures a complete, point-in-time snapshot of a machine's hardware and software state and returns it as a single, serializable .NET object. Every property is strongly typed, every DTO is immutable, and the entire pipeline is compatible with Native AOT via `System.Text.Json` source generation. Use it for fleet inventory, diagnostics dashboards, change detection, compliance auditing, or anywhere you need a structured view of what a machine looks like right now.
 
-### Contents
+[![CI](https://github.com/corderro-artz/akira/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/corderro-artz/akira/actions/workflows/ci.yml)
+
+[![Release](https://img.shields.io/github/v/release/corderro-artz/akira?include_prereleases&label=release)](https://github.com/corderro-artz/akira/releases)
+[![License](https://img.shields.io/github/license/corderro-artz/akira)](https://github.com/corderro-artz/akira/blob/main/LICENSE)
+[![NuGet](https://img.shields.io/nuget/vpre/Vaporsoft.Akira?label=nuget)](https://www.nuget.org/packages/Vaporsoft.Akira)
+
+[![.NET 10](https://img.shields.io/badge/.NET-10.0-512bd4)](https://dotnet.microsoft.com/)
+[![Platform](https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20macOS-lightgrey)](https://github.com/corderro-artz/akira)
+
+## Table of Contents
 
 - [Overview](#overview)
 - [Requirements](#requirements)
@@ -17,41 +26,36 @@ Strongly-typed, immutable, AOT-ready.
 - [Snapshot Classes](#snapshot-classes)
 - [Windows Providers](#windows-providers)
 - [API Reference](#api-reference)
+- [Development](#development)
+- [Deployment](#deployment)
 - [Links](#links)
 - [Contributing](#contributing)
-- [License](#license)
-
----
 
 ## Overview
 
-Akira captures a complete, point-in-time snapshot of a machine's hardware and
-software state and returns it as a single, serializable .NET object. Every
-property is strongly typed, every DTO is immutable, and the entire pipeline is
-compatible with Native AOT via `System.Text.Json` source generation.
+Akira provides 26 snapshot types covering BIOS, CPU, GPU, disks, memory, network adapters, services, processes, and more — totaling over 1,000 strongly-typed properties with full nullable annotations. Platform-specific providers implement a shared `ISnapshotProvider<T>` interface, and a single `MachineSnapshotCollector` aggregates everything into one envelope object with machine identification and collection metadata.
 
-Use it for fleet inventory, diagnostics dashboards, change detection, compliance
-auditing, or anywhere you need a structured view of what a machine looks like *right now*.
+### Capabilities
 
-| | |
-|---|---|
-| **26 snapshot types** | BIOS, CPU, GPU, disks, memory, network, services, processes, and more |
-| **1,000+ properties** | Full parity with Win32/WMI class definitions |
-| **Immutable DTOs** | Every property is `{ get; init; }` with full nullable annotations |
-| **`MachineSnapshot`** | One envelope object that bundles everything with metadata and timing |
-| **`SnapshotResult<T>`** | Typed result wrapper with `Ok` / `Fail` / `Unsupported` factory methods |
-| **AOT-ready** | Source-generated `System.Text.Json` serialization — zero reflection |
-| **Multi-platform** | Core DTOs are platform-agnostic; providers are shipped per-platform |
-
----
+| Capability | Details |
+| --- | --- |
+| 26 snapshot types | BIOS, CPU, GPU, disks, memory, network, services, processes, and more |
+| 1,000+ properties | Full parity with Win32/WMI class definitions |
+| Immutable DTOs | Every property is `{ get; init; }` with full nullable annotations |
+| `MachineSnapshot` | One envelope object that bundles everything with metadata and timing |
+| `SnapshotResult<T>` | Typed result wrapper with `Ok` / `Fail` / `Unsupported` factory methods |
+| AOT-ready | Source-generated `System.Text.Json` serialization — zero reflection |
+| Multi-platform | Core DTOs are platform-agnostic; providers are shipped per-platform |
 
 ## Requirements
 
-- **.NET 10.0** or later
-- **Windows** providers require `net10.0-windows` (WMI / `System.Management`)
-- No additional runtime dependencies for the core `Vaporsoft.Akira` package
+| Requirement | Version | Notes |
+| --- | --- | --- |
+| .NET | 10.0 or later | SDK and runtime |
+| Windows TFM | `net10.0-windows` | Required for `Vaporsoft.Akira.Windows` (WMI / `System.Management`) |
+| System.Management | 9.0.3 | Included transitively by the Windows package |
 
----
+> Linux and macOS provider packages are planned. The core `Vaporsoft.Akira` package has zero additional dependencies.
 
 ## Installation
 
@@ -62,10 +66,6 @@ dotnet add package Vaporsoft.Akira
 # Windows providers (WMI-based)
 dotnet add package Vaporsoft.Akira.Windows
 ```
-
-> Linux and macOS provider packages are planned.
-
----
 
 ## Quick Start
 
@@ -87,7 +87,7 @@ if (result.Success)
 }
 ```
 
-#### Serialize to JSON (AOT-safe)
+### Serialize to JSON (AOT-safe)
 
 ```csharp
 using System.Text.Json;
@@ -97,7 +97,7 @@ string json = JsonSerializer.Serialize(
     AkiraJsonContext.Default.SnapshotResultProcessorSnapshotArray);
 ```
 
-#### Collect a complete MachineSnapshot
+### Collect a complete MachineSnapshot
 
 ```csharp
 var collector = new MachineSnapshotCollector(new WmiQueryExecutor());
@@ -106,10 +106,9 @@ MachineSnapshot snapshot = await collector.CollectAsync();
 string json = JsonSerializer.Serialize(snapshot, AkiraJsonContext.Default.MachineSnapshot);
 ```
 
-`CollectAsync` runs all 26 providers and populates every metadata field
-(machine name, OS, runtime, version) automatically.
+`CollectAsync` runs all 26 providers and populates every metadata field (machine name, OS, runtime, version) automatically.
 
-#### Build a selective MachineSnapshot
+### Build a selective MachineSnapshot
 
 ```csharp
 var snapshot = new MachineSnapshot
@@ -123,11 +122,9 @@ var snapshot = new MachineSnapshot
 };
 ```
 
----
-
 ## Architecture
 
-```
+```text
 akira/
 ├── src/
 │   ├── Akira/                  Core DTOs, interfaces, JSON context  (net10.0)
@@ -140,9 +137,9 @@ akira/
 └── akira.slnx
 ```
 
-#### Data Flow
+### Data Flow
 
-```
+```text
   Application
       │
       ▼
@@ -159,12 +156,9 @@ akira/
   26 strongly-typed DTOs · 1,000+ properties · zero reflection
 ```
 
-Each platform package ships providers that implement `ISnapshotProvider<T>` using
-native OS APIs. The core `Vaporsoft.Akira` package contains only the DTOs, the
-interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it
-has **zero dependencies**.
+Each platform package ships providers that implement `ISnapshotProvider<T>` using native OS APIs. The core `Vaporsoft.Akira` package contains only the DTOs, the interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it has **zero dependencies**.
 
-#### Provider Pattern
+### Provider Pattern
 
 Every provider follows the same shape:
 
@@ -176,18 +170,15 @@ public class BIOSSnapshotProvider : WmiSnapshotProvider<BIOSSnapshot> { ... }
 public class DiskDriveSnapshotProvider : WmiCollectionSnapshotProvider<DiskDriveSnapshot> { ... }
 ```
 
-Both base classes accept an `IWmiQueryExecutor`, making every provider fully
-unit-testable without touching real WMI.
-
----
+Both base classes accept an `IWmiQueryExecutor`, making every provider fully unit-testable without touching real WMI.
 
 ## Snapshot Classes
 
 Every snapshot DTO and the native data source used on each platform.
 
 | Snapshot Class | Windows (WMI) | Linux | macOS |
-|---|---|---|---|
-| `BaseBoardSnapshot` | `Win32_BaseBoard` | `/sys/class/dmi/id/*` | `system_profiler SPHardwareDataType` |
+| --- | --- | --- | --- |
+| `BaseboardSnapshot` | `Win32_BaseBoard` | `/sys/class/dmi/id/*` | `system_profiler SPHardwareDataType` |
 | `BatterySnapshot` | `Win32_Battery` | `/sys/class/power_supply/*` | `ioreg -rc AppleSmartBattery` |
 | `BIOSSnapshot` | `Win32_BIOS` | `/sys/class/dmi/id/*` | `system_profiler SPHardwareDataType` |
 | `ComputerSystemSnapshot` | `Win32_ComputerSystem` | `hostnamectl` | `system_profiler SPHardwareDataType` |
@@ -214,16 +205,13 @@ Every snapshot DTO and the native data source used on each platform.
 | `VideoControllerSnapshot` | `Win32_VideoController` | `lspci` | `system_profiler SPDisplaysDataType` |
 | `VolumeSnapshot` | `Win32_Volume` | `lsblk -f` | `diskutil info -all -plist` |
 
----
-
 ## Windows Providers
 
-All 26 Windows providers use WMI via `System.Management`.
-Most query `root\CIMV2`; thermal zones query `root\WMI`.
+All 26 Windows providers use WMI via `System.Management`. Most query `root\CIMV2`; thermal zones query `root\WMI`.
 
 | Provider | WMI Class | Type |
-|---|---|---|
-| `BaseBoardSnapshotProvider` | `Win32_BaseBoard` | Singleton |
+| --- | --- | --- |
+| `BaseboardSnapshotProvider` | `Win32_BaseBoard` | Singleton |
 | `BIOSSnapshotProvider` | `Win32_BIOS` | Singleton |
 | `ComputerSystemSnapshotProvider` | `Win32_ComputerSystem` | Singleton |
 | `ComputerSystemProductSnapshotProvider` | `Win32_ComputerSystemProduct` | Singleton |
@@ -250,11 +238,9 @@ Most query `root\CIMV2`; thermal zones query `root\WMI`.
 | `VideoControllerSnapshotProvider` | `Win32_VideoController` | Collection |
 | `VolumeSnapshotProvider` | `Win32_Volume` | Collection |
 
----
-
 ## API Reference
 
-#### `ISnapshotProvider<TSnapshot>`
+### `ISnapshotProvider<TSnapshot>`
 
 ```csharp
 public interface ISnapshotProvider<TSnapshot>
@@ -264,10 +250,10 @@ public interface ISnapshotProvider<TSnapshot>
 }
 ```
 
-#### `SnapshotResult<T>`
+### `SnapshotResult<T>`
 
 | Property | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | `Data` | `T?` | The snapshot data, or `null` on failure |
 | `Success` | `bool` | Whether collection succeeded |
 | `IsSupported` | `bool` | Whether this type is supported on the current platform |
@@ -286,52 +272,53 @@ SnapshotResult<T>.Fail(source, error, durationMs)
 SnapshotResult<T>.Unsupported(source)
 ```
 
-#### `MachineSnapshot`
+### `MachineSnapshot`
 
-A sealed class that aggregates every `SnapshotResult<T>` into one serializable
-envelope with machine identification (`MachineName`, `DnsHostName`, `Domain`),
-OS info (`OsDescription`, `OsVersion`), and collection metadata
-(`CollectedAtUtc`, `AkiraVersion`).
+A sealed class that aggregates every `SnapshotResult<T>` into one serializable envelope with machine identification (`MachineName`, `DnsHostName`, `Domain`), OS info (`OsDescription`, `OsVersion`), and collection metadata (`CollectedAtUtc`, `AkiraVersion`).
 
-#### `MachineSnapshotCollector`
+### `MachineSnapshotCollector`
 
-A convenience class in `Vaporsoft.Akira.Windows` that collects all 26 snapshots
-and metadata in a single `CollectAsync()` call. Accepts an `IWmiQueryExecutor`
-and supports `CancellationToken`.
+A convenience class in `Vaporsoft.Akira.Windows` that collects all 26 snapshots and metadata in a single `CollectAsync()` call. Accepts an `IWmiQueryExecutor` and supports `CancellationToken`.
 
-#### `AkiraJsonContext`
+### `AkiraJsonContext`
 
-Pre-configured `System.Text.Json` source-generated context with camelCase naming,
-indented output, and null-property omission. Includes serialization metadata for
-all 26 snapshot types and their `SnapshotResult<T>` wrappers.
+Pre-configured `System.Text.Json` source-generated context with camelCase naming, indented output, and null-property omission. Includes serialization metadata for all 26 snapshot types and their `SnapshotResult<T>` wrappers.
 
 ```csharp
 JsonSerializer.Serialize(snapshot, AkiraJsonContext.Default.MachineSnapshot);
 JsonSerializer.Deserialize(json, AkiraJsonContext.Default.MachineSnapshot);
 ```
 
----
+## Development
+
+```bash
+dotnet restore
+dotnet build --configuration Release -warnaserror
+dotnet test --configuration Release --logger trx --results-directory TestResults
+```
+
+## Deployment
+
+- Trigger: creating a [GitHub Release](https://github.com/corderro-artz/akira/releases)
+- Workflow: [CI](https://github.com/corderro-artz/akira/actions/workflows/ci.yml) — builds, tests, packs, and publishes on the `release` event
+- Targets: [NuGet.org](https://www.nuget.org/packages/Vaporsoft.Akira) and [GitHub Packages](https://github.com/corderro-artz?tab=packages&repo_name=akira)
 
 ## Links
 
-| | |
-|---|---|
-| **NuGet — Core** | [nuget.org/packages/Vaporsoft.Akira](https://www.nuget.org/packages/Vaporsoft.Akira) |
-| **NuGet — Windows** | [nuget.org/packages/Vaporsoft.Akira.Windows](https://www.nuget.org/packages/Vaporsoft.Akira.Windows) |
-| **GitHub Repository** | [github.com/corderro-artz/akira](https://github.com/corderro-artz/akira) |
-| **Releases** | [github.com/corderro-artz/akira/releases](https://github.com/corderro-artz/akira/releases) |
-| **GitHub Packages** | [github.com/corderro-artz/akira/packages](https://github.com/corderro-artz?tab=packages&repo_name=akira) |
-| **CI / CD** | [github.com/corderro-artz/akira/actions](https://github.com/corderro-artz/akira/actions) |
-| **License** | [MIT](LICENSE) |
-| **Vaporsoft** | [vaporsoft.dev](https://www.vaporsoft.dev) |
-| **Wiki / Docs** | *Coming soon* |
-
----
+| Resource | URL |
+| --- | --- |
+| Repository | [github.com/corderro-artz/akira](https://github.com/corderro-artz/akira) |
+| NuGet — Core | [nuget.org/packages/Vaporsoft.Akira](https://www.nuget.org/packages/Vaporsoft.Akira) |
+| NuGet — Windows | [nuget.org/packages/Vaporsoft.Akira.Windows](https://www.nuget.org/packages/Vaporsoft.Akira.Windows) |
+| GitHub Packages | [github.com/corderro-artz/akira/packages](https://github.com/corderro-artz?tab=packages&repo_name=akira) |
+| Releases | [github.com/corderro-artz/akira/releases](https://github.com/corderro-artz/akira/releases) |
+| Issues | [github.com/corderro-artz/akira/issues](https://github.com/corderro-artz/akira/issues) |
+| CI / CD | [github.com/corderro-artz/akira/actions](https://github.com/corderro-artz/akira/actions) |
+| Vaporsoft | [vaporsoft.dev](https://www.vaporsoft.dev) |
 
 ## Contributing
 
-Contributions are welcome. If you'd like to add Linux or macOS providers, open
-an issue first to discuss the approach.
+Contributions are welcome. If you'd like to add Linux or macOS providers, open an issue first to discuss the approach.
 
 1. Fork the repository
 2. Create a feature branch
@@ -340,6 +327,4 @@ an issue first to discuss the approach.
 
 ---
 
-## License
-
-[MIT](LICENSE) — Copyright © 2026 [Corderro Artz](https://github.com/corderro-artz) / [Vaporsoft](https://www.vaporsoft.dev)
+Copyright © 2026 [Corderro Artz](https://github.com/corderro-artz) / [Vaporsoft](https://www.vaporsoft.dev).
