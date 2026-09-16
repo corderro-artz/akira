@@ -74,3 +74,20 @@ jobs:
         run: gh release upload ${{ github.event.release.tag_name }} artifacts/*.nupkg artifacts/*.snupkg --clobber
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  diagrams:
+    name: Diagrams
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The rendered diagrams are generated from docs/diagrams/*.mmd. This fails
+      # if an SVG has stopped carrying a word its source declares, if it was
+      # rendered without the brand theme, or if it is malformed. No install
+      # step: check.mjs imports only node builtins, and verifies the committed
+      # SVGs rather than re-rendering them.
+      - run: node docs/diagrams/check.mjs

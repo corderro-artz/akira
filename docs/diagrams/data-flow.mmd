@@ -7,6 +7,11 @@ flowchart LR
         WIN["Windows<br/>WMI"]
         LIN["Linux<br/>/proc, /sys<br/>planned"]
         MAC["macOS<br/>IOKit, sysctl<br/>planned"]
+        %% The three providers are parallel, not sequential, so there is no edge
+        %% to order them and `direction TB` has nothing to act on — they land in
+        %% a row and widen the graph. `~~~` is an invisible link: it stacks them
+        %% without drawing a relationship that does not exist.
+        WIN ~~~ LIN ~~~ MAC
     end
 
     subgraph CORE ["Vaporsoft.Akira"]
@@ -19,8 +24,4 @@ flowchart LR
 
     OUT(["26 DTOs<br/>1,000+ properties<br/>zero reflection"])
 
-    APP --> API
-    API --> WIN --> RES
-    API --> LIN --> RES
-    API --> MAC --> RES
-    CTX --> OUT
+    APP --> API --> PLATFORM --> CORE --> OUT
