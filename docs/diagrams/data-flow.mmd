@@ -1,19 +1,26 @@
-flowchart TD
-    APP["Application"]
-    API["ISnapshotProvider&lt;T&gt;.GetSnapshotAsync()"]
-    WIN["Vaporsoft.Akira.Windows"]
-    LIN["Vaporsoft.Akira.Linux<br/>planned"]
-    MAC["Vaporsoft.Akira.MacOS<br/>planned"]
-    WMI["WMI · System.Management"]
-    PROC["/proc, /sys, CLI tools"]
-    IOK["IOKit, sysctl, CLI"]
-    RES["SnapshotResult&lt;T&gt;"]
-    SNAP["MachineSnapshot"]
-    CTX["AkiraJsonContext"]
-    OUT(["26 strongly-typed DTOs · 1,000+ properties · zero reflection"])
+flowchart LR
+    APP(["Application"])
+    API["ISnapshotProvider&lt;T&gt;<br/>.GetSnapshotAsync()"]
+
+    subgraph PLATFORM ["platform packages"]
+        direction TB
+        WIN["Windows<br/>WMI"]
+        LIN["Linux<br/>/proc, /sys<br/>planned"]
+        MAC["macOS<br/>IOKit, sysctl<br/>planned"]
+    end
+
+    subgraph CORE ["Vaporsoft.Akira"]
+        direction TB
+        RES["SnapshotResult&lt;T&gt;"]
+        SNAP["MachineSnapshot"]
+        CTX["AkiraJsonContext"]
+        RES --> SNAP --> CTX
+    end
+
+    OUT(["26 DTOs<br/>1,000+ properties<br/>zero reflection"])
 
     APP --> API
-    API --> WIN --> WMI --> RES
-    API --> LIN --> PROC --> RES
-    API --> MAC --> IOK --> RES
-    RES --> SNAP --> CTX --> OUT
+    API --> WIN --> RES
+    API --> LIN --> RES
+    API --> MAC --> RES
+    CTX --> OUT
