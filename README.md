@@ -139,22 +139,13 @@ akira/
 
 ### Data Flow
 
-```text
-  Application
-      │
-      ▼
-  ISnapshotProvider<T>.GetSnapshotAsync()
-      │
-      ├──► Vaporsoft.Akira.Windows ──► WMI (System.Management)
-      ├──► Vaporsoft.Akira.Linux   ──► /proc, /sys, CLI tools  (planned)
-      └──► Vaporsoft.Akira.MacOS   ──► IOKit, sysctl, CLI      (planned)
-      │
-      ▼
-  SnapshotResult<T>  →  MachineSnapshot  →  AkiraJsonContext
-      │
-      ▼
-  26 strongly-typed DTOs · 1,000+ properties · zero reflection
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/data-flow-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/diagrams/data-flow-light.svg">
+  <img alt="Akira data flow: an application calls ISnapshotProvider&lt;T&gt;.GetSnapshotAsync(), which fans out to the Windows, Linux and macOS providers and converges on SnapshotResult&lt;T&gt;, MachineSnapshot and AkiraJsonContext." src="docs/diagrams/data-flow-light.svg">
+</picture>
+
+<sub>Source: <a href="docs/diagrams/data-flow.mmd"><code>docs/diagrams/data-flow.mmd</code></a></sub>
 
 Each platform package ships providers that implement `ISnapshotProvider<T>` using native OS APIs. The core `Vaporsoft.Akira` package contains only the DTOs, the interface, `SnapshotResult<T>`, and the AOT-safe JSON serialization context — it has **zero dependencies**.
 
