@@ -142,7 +142,7 @@ akira/
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/data-flow-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/diagrams/data-flow-light.svg">
-  <img alt="Akira data flow: an application calls ISnapshotProvider&lt;T&gt;.GetSnapshotAsync(), which fans out to the Windows, Linux and macOS providers and converges on SnapshotResult&lt;T&gt;, MachineSnapshot and AkiraJsonContext." src="docs/diagrams/data-flow-light.svg">
+  <img alt="Akira data flow: an application calls ISnapshotProvider&lt;T&gt;.GetSnapshotAsync(), which fans out to the Windows, Linux and macOS providers and their native APIs, then converges on SnapshotResult&lt;T&gt;, MachineSnapshot and AkiraJsonContext." src="docs/diagrams/data-flow-light.svg">
 </picture>
 
 <sub>Source: <a href="docs/diagrams/data-flow.mmd"><code>docs/diagrams/data-flow.mmd</code></a></sub>
